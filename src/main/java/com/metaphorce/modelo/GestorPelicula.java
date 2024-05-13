@@ -67,4 +67,18 @@ public class GestorPelicula {
 
         return peliculasNoDisponibles;
     }
+
+    public void marcarComoDisponible(Integer id) {
+
+        if (id == null) {
+            return;
+        }
+
+        for (Pelicula pelicula : peliculas) {
+
+            if (pelicula.getId().equals(id)) {
+                pelicula.setDisponible(true);
+            }
+        }
+    }
 }
