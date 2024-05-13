@@ -30,4 +30,13 @@ public class Pelicula {
     public void setDisponible(Boolean disponible) {
         this.disponible = disponible;
     }
+
+    @Override
+    public String toString() {
+        return "Pelicula{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", disponible=" + disponible +
+                '}';
+    }
 }
