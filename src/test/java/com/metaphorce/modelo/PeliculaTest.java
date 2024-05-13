@@ -47,4 +47,24 @@ public class PeliculaTest {
         assertNotEquals(idPelicula, idElHobbit);
         assertNotEquals(idElHobbit, idElResplandor);
     }
+
+    @Test
+    void cuandoSeCambiaLaDisponibilidadDeLaPeliculaAFalse() {
+        Pelicula pelicula = new Pelicula("Star wars");
+
+        pelicula.setDisponible(false);
+
+        assertFalse(pelicula.getDisponible());
+    }
+
+    @Test
+    void cuandoSeCambiaLaDisponibilidadDeLaPeliculaATrueDespuesDeFalse() {
+        Pelicula pelicula = new Pelicula("Star wars");
+
+        pelicula.setDisponible(false);
+
+        pelicula.setDisponible(true);
+
+        assertTrue(pelicula.getDisponible());
+    }
 }
