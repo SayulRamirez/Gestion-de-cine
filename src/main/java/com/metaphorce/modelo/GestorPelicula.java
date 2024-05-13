@@ -5,7 +5,7 @@ import java.util.List;
 
 public class GestorPelicula {
 
-    private List<Pelicula> peliculas;
+    private final List<Pelicula> peliculas;
 
     public GestorPelicula() {
         peliculas = new ArrayList<>();
@@ -53,5 +53,18 @@ public class GestorPelicula {
         }
 
         return peliculasDisponibles;
+    }
+
+    public List<Pelicula> obtenerPeliculasNoDisponibles() {
+        List<Pelicula> peliculasNoDisponibles = new ArrayList<>();
+
+        for (Pelicula pelicula : peliculas) {
+
+            if (!pelicula.getDisponible()) {
+                peliculasNoDisponibles.add(pelicula);
+            }
+        }
+
+        return peliculasNoDisponibles;
     }
 }
