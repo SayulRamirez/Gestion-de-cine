@@ -246,4 +246,71 @@ public class GestorPeliculaTest {
 
         assertTrue(noDisponibles.isEmpty());
     }
+
+    @Test
+    void cuandoSeMarcaComoNoDisponiblePeroElIdEsNull() {
+        Pelicula hobbit = new Pelicula("El hobbit");
+        hobbit.setDisponible(false);
+
+        gestorPelicula.agregarPelicula(pelicula);
+        gestorPelicula.agregarPelicula(hobbit);
+        gestorPelicula.agregarPelicula(new Pelicula("El mundo mágico de terabitia"));
+        gestorPelicula.agregarPelicula(new Pelicula("Superman"));
+
+        gestorPelicula.marcarComoNoDisponible(null);
+
+        List<Pelicula> disponibles = gestorPelicula.obtenerPeliculasDisponibles();
+        List<Pelicula> noDisponibles = gestorPelicula.obtenerPeliculasNoDisponibles();
+
+        assertFalse(disponibles.isEmpty());
+        assertEquals(3, disponibles.size());
+
+        assertFalse(noDisponibles.isEmpty());
+        assertEquals(1, noDisponibles.size());
+    }
+
+    @Test
+    void cuandoSeMarcaComoNoDisponiblePeroNoEstaLaPelicula() {
+        Pelicula hobbit = new Pelicula("El hobbit");
+        hobbit.setDisponible(false);
+
+        gestorPelicula.agregarPelicula(pelicula);
+        gestorPelicula.agregarPelicula(hobbit);
+        gestorPelicula.agregarPelicula(new Pelicula("El mundo mágico de terabitia"));
+        gestorPelicula.agregarPelicula(new Pelicula("Superman"));
+
+        gestorPelicula.marcarComoNoDisponible(123);
+
+        List<Pelicula> disponibles = gestorPelicula.obtenerPeliculasDisponibles();
+        List<Pelicula> noDisponibles = gestorPelicula.obtenerPeliculasNoDisponibles();
+
+        assertFalse(disponibles.isEmpty());
+        assertEquals(3, disponibles.size());
+
+        assertFalse(noDisponibles.isEmpty());
+        assertEquals(1, noDisponibles.size());
+    }
+
+    @Test
+    void cuandoSeMarcaComoNoDisponible() {
+
+        Pelicula hobbit = new Pelicula("El hobbit");
+
+        gestorPelicula.agregarPelicula(pelicula);
+        gestorPelicula.agregarPelicula(new Pelicula("El mundo mágico de terabitia"));
+        gestorPelicula.agregarPelicula(hobbit);
+        gestorPelicula.agregarPelicula(new Pelicula("Superman"));
+
+        gestorPelicula.marcarComoNoDisponible(hobbit.getId());
+
+        List<Pelicula> disponibles = gestorPelicula.obtenerPeliculasDisponibles();
+        List<Pelicula> noDisponibles = gestorPelicula.obtenerPeliculasNoDisponibles();
+
+        assertFalse(disponibles.isEmpty());
+        assertEquals(3, disponibles.size());
+
+        assertFalse(noDisponibles.isEmpty());
+        assertEquals(1, noDisponibles.size());
+        assertTrue(noDisponibles.contains(hobbit));
+    }
 }

@@ -78,6 +78,24 @@ public class GestorPelicula {
 
             if (pelicula.getId().equals(id)) {
                 pelicula.setDisponible(true);
+
+                break;
+            }
+        }
+    }
+
+    public void marcarComoNoDisponible(Integer id) {
+
+        if (id == null) {
+            return;
+        }
+
+        for (Pelicula pelicula : peliculas) {
+
+            if (pelicula.getId().equals(id)) {
+                pelicula.setDisponible(false);
+
+                break;
             }
         }
     }
