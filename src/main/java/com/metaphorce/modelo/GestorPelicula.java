@@ -37,7 +37,7 @@ public class GestorPelicula {
         }
     }
 
-    public List<Pelicula> getPeliculas() {
+    public List<Pelicula> obtenerPeliculas() {
         return peliculas;
     }
 }

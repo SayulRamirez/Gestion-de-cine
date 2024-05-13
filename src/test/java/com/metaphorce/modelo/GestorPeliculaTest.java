@@ -21,7 +21,7 @@ public class GestorPeliculaTest {
     @Test
     void cuandoSeCreaUnGestorDePeliculaLaListaEstaVacia() {
 
-        List<Pelicula> peliculas = gestorPelicula.getPeliculas();
+        List<Pelicula> peliculas = gestorPelicula.obtenerPeliculas();
 
         assertTrue(peliculas.isEmpty());
     }
@@ -31,7 +31,7 @@ public class GestorPeliculaTest {
 
         gestorPelicula.agregarPelicula(pelicula);
 
-        List<Pelicula> peliculas = gestorPelicula.getPeliculas();
+        List<Pelicula> peliculas = gestorPelicula.obtenerPeliculas();
 
         assertFalse(peliculas.isEmpty());
         assertEquals(1, peliculas.size());
@@ -45,7 +45,7 @@ public class GestorPeliculaTest {
 
         gestorPelicula.eliminarPelicula(pelicula.getId());
 
-        List<Pelicula> peliculas = gestorPelicula.getPeliculas();
+        List<Pelicula> peliculas = gestorPelicula.obtenerPeliculas();
 
         assertFalse(peliculas.isEmpty());
         assertEquals(1, peliculas.size());
@@ -60,7 +60,7 @@ public class GestorPeliculaTest {
 
         gestorPelicula.eliminarPelicula(null);
 
-        List<Pelicula> peliculas = gestorPelicula.getPeliculas();
+        List<Pelicula> peliculas = gestorPelicula.obtenerPeliculas();
 
         assertFalse(peliculas.isEmpty());
         assertEquals(2, peliculas.size());
@@ -76,10 +76,24 @@ public class GestorPeliculaTest {
 
         gestorPelicula.eliminarPelicula(superman.getId());
 
-        List<Pelicula> peliculas = gestorPelicula.getPeliculas();
+        List<Pelicula> peliculas = gestorPelicula.obtenerPeliculas();
 
         assertFalse(peliculas.isEmpty());
         assertEquals(2, peliculas.size());
         assertFalse(peliculas.contains(superman));
+    }
+
+    @Test
+    void cuandoSeObtienenTodasLasPeliculasYLaListaNoEstaVacia() {
+
+        gestorPelicula.agregarPelicula(pelicula);
+        gestorPelicula.agregarPelicula(new Pelicula("El hobbit"));
+        gestorPelicula.agregarPelicula(new Pelicula("Superman"));
+        gestorPelicula.agregarPelicula(new Pelicula("El mundo mágico de terabitia"));
+
+        List<Pelicula> peliculas = gestorPelicula.obtenerPeliculas();
+
+        assertFalse(peliculas.isEmpty());
+        assertEquals(4, peliculas.size());
     }
 }
