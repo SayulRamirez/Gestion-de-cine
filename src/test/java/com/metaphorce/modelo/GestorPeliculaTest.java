@@ -36,4 +36,50 @@ public class GestorPeliculaTest {
         assertFalse(peliculas.isEmpty());
         assertEquals(1, peliculas.size());
     }
+
+    @Test
+    void cuandoSeEliminaUnaPeliculaPorSuId() {
+
+        gestorPelicula.agregarPelicula(new Pelicula("Star wars"));
+        gestorPelicula.agregarPelicula(pelicula);
+
+        gestorPelicula.eliminarPelicula(pelicula.getId());
+
+        List<Pelicula> peliculas = gestorPelicula.getPeliculas();
+
+        assertFalse(peliculas.isEmpty());
+        assertEquals(1, peliculas.size());
+        assertFalse(peliculas.contains(pelicula));
+    }
+
+    @Test
+    void cuandoAlEliminarUnaPeliculaElIdEsNulo() {
+
+        gestorPelicula.agregarPelicula(new Pelicula("Star wars"));
+        gestorPelicula.agregarPelicula(pelicula);
+
+        gestorPelicula.eliminarPelicula(null);
+
+        List<Pelicula> peliculas = gestorPelicula.getPeliculas();
+
+        assertFalse(peliculas.isEmpty());
+        assertEquals(2, peliculas.size());
+    }
+
+    @Test
+    void cuandoAlEliminarUnaPeliculaNoSeEncuentraPorSuId() {
+
+        gestorPelicula.agregarPelicula(new Pelicula("Star wars"));
+        gestorPelicula.agregarPelicula(pelicula);
+
+        Pelicula superman = new Pelicula("Superman");
+
+        gestorPelicula.eliminarPelicula(superman.getId());
+
+        List<Pelicula> peliculas = gestorPelicula.getPeliculas();
+
+        assertFalse(peliculas.isEmpty());
+        assertEquals(2, peliculas.size());
+        assertFalse(peliculas.contains(superman));
+    }
 }
