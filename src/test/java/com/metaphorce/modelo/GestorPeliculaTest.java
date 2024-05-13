@@ -96,4 +96,48 @@ public class GestorPeliculaTest {
         assertFalse(peliculas.isEmpty());
         assertEquals(4, peliculas.size());
     }
+
+    @Test
+    void cuandoSeObtienenLasPeliculasDisponiblesEstaVacia() {
+        Pelicula hobbit = new Pelicula("El hobbit");
+        Pelicula terabitia = new Pelicula("El mundo mágico de terabitia");
+        Pelicula superman = new Pelicula("Superman");
+
+        pelicula.setDisponible(false);
+        hobbit.setDisponible(false);
+        terabitia.setDisponible(false);
+        superman.setDisponible(false);
+
+        gestorPelicula.agregarPelicula(pelicula);
+        gestorPelicula.agregarPelicula(hobbit);
+        gestorPelicula.agregarPelicula(superman);
+        gestorPelicula.agregarPelicula(terabitia);
+
+        List<Pelicula> peliculas = gestorPelicula.obtenerPeliculasDisponibles();
+
+        assertTrue(peliculas.isEmpty());
+    }
+
+    @Test
+    void cuandoSeObtienenLasPeliculasDisponiblesNoEstaVacia() {
+
+        Pelicula hobbit = new Pelicula("El hobbit");
+        Pelicula terabitia = new Pelicula("El mundo mágico de terabitia");
+        Pelicula superman = new Pelicula("Superman");
+
+        pelicula.setDisponible(false);
+        superman.setDisponible(false);
+
+        gestorPelicula.agregarPelicula(pelicula);
+        gestorPelicula.agregarPelicula(hobbit);
+        gestorPelicula.agregarPelicula(superman);
+        gestorPelicula.agregarPelicula(terabitia);
+
+        List<Pelicula> peliculas = gestorPelicula.obtenerPeliculasDisponibles();
+
+        assertFalse(peliculas.isEmpty());
+        assertEquals(2, peliculas.size());
+        assertTrue(peliculas.contains(hobbit));
+        assertTrue(peliculas.contains(terabitia));
+    }
 }

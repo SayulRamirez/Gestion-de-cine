@@ -40,4 +40,18 @@ public class GestorPelicula {
     public List<Pelicula> obtenerPeliculas() {
         return peliculas;
     }
+
+    public List<Pelicula> obtenerPeliculasDisponibles() {
+
+        List<Pelicula> peliculasDisponibles = new ArrayList<>();
+
+        for (Pelicula pelicula : peliculas) {
+
+            if (pelicula.getDisponible()) {
+                peliculasDisponibles.add(pelicula);
+            }
+        }
+
+        return peliculasDisponibles;
+    }
 }
