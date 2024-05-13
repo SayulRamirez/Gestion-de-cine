@@ -27,6 +27,14 @@ public class GestorPeliculaTest {
     }
 
     @Test
+    void cuandoSeAgregaUnaPeliculaNuevaPeroEsNull() {
+        gestorPelicula.agregarPelicula(null);
+
+        List<Pelicula> peliculas = gestorPelicula.obtenerPeliculas();
+
+        assertTrue(peliculas.isEmpty());
+    }
+    @Test
     void cuandoSeAgregaUnaPeliculaNueva() {
 
         gestorPelicula.agregarPelicula(pelicula);

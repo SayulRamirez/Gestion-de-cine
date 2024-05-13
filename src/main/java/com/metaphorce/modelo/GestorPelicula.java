@@ -12,6 +12,11 @@ public class GestorPelicula {
     }
 
     public void agregarPelicula(Pelicula pelicula) {
+
+        if (pelicula == null) {
+            return;
+        }
+
         this.peliculas.add(pelicula);
     }
 
